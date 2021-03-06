@@ -6,7 +6,7 @@ require 'name_of_person'
 
 class ModelPerson
   include ActiveModel::Model
-  attr_accessor :first_name, :last_name
+  attr_accessor :name_first, :name_last
 
   has_person_name
 end
@@ -15,7 +15,7 @@ class HasPersonNameTest < ActiveSupport::TestCase
   include NameOfPerson
 
   setup do
-    @person = ModelPerson.new(first_name: "David", last_name: "Heinemeier Hansson")
+    @person = ModelPerson.new(name_first: "David", name_last: "Heinemeier Hansson")
   end
 
   test "reading name" do

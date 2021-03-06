@@ -3,7 +3,7 @@ require 'active_support/testing/autorun'
 
 require 'name_of_person/assignable_name'
 
-class StructPerson < Struct.new(:first_name, :last_name)
+class StructPerson < Struct.new(:name_first, :name_last)
   include NameOfPerson::AssignableName
 end
 
