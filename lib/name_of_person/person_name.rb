@@ -21,7 +21,7 @@ module NameOfPerson
     end
 
     def preferred
-      @preferred ||= preferred.present? "#{first_preferred} #{last}" : full
+      @preferred ||= preferred.present? ? "#{first_preferred} #{last}" : full
     end
 
     # Returns first + last initial, such as "Jason F.".
