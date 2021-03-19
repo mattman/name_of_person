@@ -2,22 +2,30 @@ require 'active_support/core_ext/string'
 
 module NameOfPerson
   class PersonName < String
-    attr_reader :first, :last
+    attr_reader :first, :preferred, :last
 
-    def self.full(full_name)
-      first, last = full_name.to_s.squish.split(/\s/, 2)
+    def self.full(full_name, preferred: false)
+      if preferred
+        preferred, last = full_name.to_s.squish.split(/\s/, 2)
+      else
+        first, last = full_name.to_s.squish.split(/\s/, 2)
+      end
       new(first, last) if first.present?
     end
 
-    def initialize(first, last = nil)
+    def initialize(first, preferred = nil, last = nil)
       raise ArgumentError, "First name is required" unless first.present?
-      @first, @last = first, last
+      @first, @preferred, @last = first, preferred, last
       super full
     end
 
     # Returns first + last, such as "Jason Fried".
     def full
       @full ||= last.present? ? "#{first} #{last}" : first
+    end
+
+    def preferred
+      @preferred ||= preferred.present? "#{preferred} #{last}"
     end
 
     # Returns first + last initial, such as "Jason F.".
